@@ -37,9 +37,17 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
 
-    'account',
-    'discipline',
-    'news',
+    'apps.account',
+    'apps.additionalMaterials',
+    'apps.educationForms',
+    'apps.news',
+    'apps.positions',
+    'apps.studyCycles',
+    'apps.subjects',
+    'apps.teachers',
+    'apps.teacherSubjects',
+    'apps.textbooks',
+    'apps.webMaterials',
     'django_cleanup.apps.CleanupConfig',
 ]
 

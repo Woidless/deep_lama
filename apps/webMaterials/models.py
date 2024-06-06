@@ -3,8 +3,10 @@ from django.db import models
 from apps.subjects.models import Subjects
 
 
-class Textbooks(models.Model):
+class WebMaterials(models.Model):
     name = models.CharField(max_length=255, null=True)
-    quantity = models.IntegerField(default=0)
+    web_link = models.CharField(max_length=255, null=True)
     subject = models.ForeignKey(Subjects, on_delete=models.CASCADE, null=True)
-    is_main = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'WebMaterials'

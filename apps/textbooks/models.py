@@ -8,3 +8,6 @@ class Textbooks(models.Model):
     quantity = models.IntegerField(default=0)
     subject = models.ForeignKey(Subjects, on_delete=models.CASCADE, null=True)
     is_main = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'Textbooks'

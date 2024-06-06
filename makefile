@@ -1,17 +1,17 @@
 run:
-	python3 manage.py runserver
+	python manage.py runserver
 
 migrate:
-	python3 manage.py makemigrations
-	python3 manage.py migrate
+	python manage.py makemigrations
+	python manage.py migrate
 
 restartdb:
-	python3 manage.py makemigrations account
-	python3 manage.py makemigrations base
-	python3 manage.py makemigrations statement
-	python3 manage.py makemigrations django_bot
-	python3 manage.py migrate
-	python3 manage.py createsuperuser
+	python manage.py makemigrations account
+	python manage.py makemigrations base
+	python manage.py makemigrations statement
+	python manage.py makemigrations django_bot
+	python manage.py migrate
+	python manage.py createsuperuser
 
 daemon:
 	celery -A config multi start worker1 \
