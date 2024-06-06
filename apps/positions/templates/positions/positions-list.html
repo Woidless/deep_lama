@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positions List</title>
+    <!-- Подключаем Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Positions List</h1>
+        <a class="btn btn-secondary mb-3">Back to Main Menu</a>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for position in object_list %}
+                <tr>
+                    <td>{{ position.id }}</td>
+                    <td>{{ position.name }}</td>
+                    <td>
+                        <!-- Кнопка для обновления -->
+                        <a href="{% url 'positions-update' position.pk %}" class="btn btn-primary btn-sm mr-2">Update</a>
+                        <!-- Кнопка для удаления -->
+                        <a href="{% url 'positions-delete' position.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Кнопка для добавления новой записи -->
+        <a href="{% url 'positions-create' %}" class="btn btn-success">Add Position</a>
+    </div>
+
+    <!-- Подключаем Bootstrap JS (необходимо для работы кнопок) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

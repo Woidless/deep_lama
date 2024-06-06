@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'apps.teacherSubjects',
     'apps.textbooks',
     'apps.webMaterials',
+    'apps.subjectDetails',
     'django_cleanup.apps.CleanupConfig',
 ]
 
