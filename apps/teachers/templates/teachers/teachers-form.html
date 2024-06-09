@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if object %}Update Teacher{% else %}Create Teacher{% endif %}</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">{% if object %}Update Teacher{% else %}Create Teacher{% endif %}</h1>
+        <a href="{% url 'teachers-list' %}" class="btn btn-secondary mb-3">Back to Teachers</a>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_first_name">First Name:</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_middle_name">Middle Name:</label>
+                {{ form.middle_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_last_name">Last Name:</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_position">Position:</label>
+                {{ form.position }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

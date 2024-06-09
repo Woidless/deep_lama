@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers List</title>
+    <!-- Подключаем Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Teachers List</h1>
+        <a class="btn btn-secondary mb-3" >Back to Main Menu</a>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Position</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in object_list %}
+                <tr>
+                    <td>{{ teacher.id }}</td>
+                    <td>{{ teacher.first_name }}</td>
+                    <td>{{ teacher.middle_name }}</td>
+                    <td>{{ teacher.last_name }}</td>
+                    <td>{{ teacher.position.name }}</td>
+                    <td>
+                        <!-- Кнопка для обновления -->
+                        <a href="{% url 'teachers-update' teacher.pk %}" class="btn btn-primary btn-sm mr-2">Update</a>
+                        <!-- Кнопка для удаления -->
+                        <a href="{% url 'teachers-delete' teacher.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Кнопка для добавления новой записи -->
+        <a href="{% url 'teachers-create' %}" class="btn btn-success">Add Teacher</a>
+    </div>
+
+    <!-- Подключаем Bootstrap JS (необходимо для работы кнопок) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
