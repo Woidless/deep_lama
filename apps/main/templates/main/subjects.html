@@ -1,0 +1,83 @@
+<!-- main/subjects.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+        .update-button {
+            background-color: #009879;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% for item in data %}
+        <h2>{{ item.study_cycle }}</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Название предмета</th>
+                    <th>Форма обучения</th>
+                    <th>Количество студентов</th>
+                    <th>Учебники</th>
+                    <th>Веб-материалы</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject in item.subjects %}
+                <tr>
+                    <td>{{ subject.subject_name }}</td>
+                    <td>{{ subject.education_form }}</td>
+                    <td>{{ subject.number_of_students }}</td>
+                    <td>
+                        {% for textbook in subject.textbooks %}
+                            {{ textbook.name }} <a href="{% url 'update_textbook' textbook.id %}" class="update-button">Обновить</a><br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for web_material in subject.web_materials %}
+                            <a href="{{ web_material.link }}" target="_blank">{{ web_material.link }}</a> <a href="{% url 'update_web_material' web_material.id %}" class="update-button">Обновить</a><br>
+                        {% endfor %}
+                    </td>
+                    <td><a href="{% url 'update_subject' subject.subject_id %}" class="update-button">Обновить</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</body>
+</html>
