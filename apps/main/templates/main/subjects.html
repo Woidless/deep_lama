@@ -1,6 +1,8 @@
 <!-- main/subjects.html -->
 {% load static %}
 <!DOCTYPE html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html>
 <head>
     <style>
@@ -9,7 +11,7 @@
             margin: 25px 0;
             font-size: 0.9em;
             font-family: sans-serif;
-            min-width: 400px;
+            min-width: 800px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         }
         .styled-table thead tr {
@@ -30,16 +32,20 @@
         .styled-table tbody tr:last-of-type {
             border-bottom: 2px solid #009879;
         }
-        .update-button {
+        .update-button,
+        .update-all-button {
             background-color: #009879;
             color: white;
             padding: 5px 10px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: block; /* Changed to block to ensure each link is on a new line */
             font-size: 16px;
-            margin: 4px 2px;
+            margin-bottom: 5px; /* Added margin-bottom to separate links visually */
             cursor: pointer;
+        }
+        .update-all-button {
+            background-color: #007f68;
         }
     </style>
 </head>
@@ -52,29 +58,50 @@
                     <th>Название предмета</th>
                     <th>Форма обучения</th>
                     <th>Количество студентов</th>
-                    <th>Учебники</th>
+                    <th colspan="2">Учебники</th>
                     <th>Веб-материалы</th>
                     <th>Действия</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Название</th>
+                    <th>Количество</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for subject in item.subjects %}
-                <tr>
-                    <td>{{ subject.subject_name }}</td>
-                    <td>{{ subject.education_form }}</td>
-                    <td>{{ subject.number_of_students }}</td>
-                    <td>
-                        {% for textbook in subject.textbooks %}
-                            {{ textbook.name }} <a href="{% url 'update_textbook' textbook.id %}" class="update-button">Обновить</a><br>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for web_material in subject.web_materials %}
-                            <a href="{{ web_material.link }}" target="_blank">{{ web_material.link }}</a> <a href="{% url 'update_web_material' web_material.id %}" class="update-button">Обновить</a><br>
-                        {% endfor %}
-                    </td>
-                    <td><a href="{% url 'update_subject' subject.subject_id %}" class="update-button">Обновить</a></td>
-                </tr>
+                    {% for textbook in subject.textbooks %}
+                        {% if forloop.first %}
+                            <tr>
+                                <td rowspan="{{ subject.textbooks|length }}">{{ subject.subject_name }}</td>
+                                <td rowspan="{{ subject.textbooks|length }}">{{ subject.education_form }}</td>
+                                <td rowspan="{{ subject.textbooks|length }}">{{ subject.number_of_students }}</td>
+                                <td>{{ textbook.name }}</td>
+                                <td>{{ textbook.quantity }}</td>
+                                <td rowspan="{{ subject.textbooks|length }}">
+                                    {% for web_material in subject.web_materials %}
+                                        {{ web_material }}{% if not forloop.last %}<br>{% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td rowspan="{{ subject.textbooks|length }}">
+                                    <a href="{% url 'update_subject' subject.subject_id %}" class="update-button">Обновить предмет</a>
+                                    <br>
+                                    <a href="{% url 'update_all_textbooks' subject.subject_id %}" class="update-all-button">Обновить учебники</a>
+                                    <br>
+                                    <a href="{% url 'update_all_web_materials' subject.subject_id %}" class="update-all-button">Обновить веб-материалы</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td>{{ textbook.name }}</td>
+                                <td>{{ textbook.quantity }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
