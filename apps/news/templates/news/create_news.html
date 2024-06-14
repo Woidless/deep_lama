@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create News</title>
+    <link rel="stylesheet" href="{% static 'news/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create News</h1>
+        <form method="post" enctype="multipart/form-data" class="custom-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_headline">Headline:</label>
+                {{ form.headline }}
+            </div>
+            <div class="form-group">
+                <label for="id_content">Content:</label>
+                {{ form.content }}
+            </div>
+            <div class="form-group">
+                <label for="id_publication_date">Publication Date:</label>
+                {{ form.publication_date }}
+            </div>
+            <div class="form-group">
+                <label for="id_image">Image:</label>
+                {{ form.image }}
+            </div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</body>
+</html>

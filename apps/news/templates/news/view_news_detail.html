@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ news_item.headline }}</title>
+    <link rel="stylesheet" href="{% static 'news/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ news_item.headline }}</h1>
+        <div class="news-detail">
+            {% if news_item.image %}
+                <img src="{{ news_item.image.url }}" alt="{{ news_item.headline }}" class="news-image">
+            {% endif %}
+            <p>{{ news_item.content }}</p>
+            <p><strong>Publication Date:</strong> {{ news_item.publication_date }}</p>
+            <div class="edit-buttons">
+                <a href="{% url 'edit_news' news_item.id %}" class="update-button">Edit</a>
+                <a href="{% url 'delete_news' news_item.id %}" class="delete-button">Delete</a>
+            </div>
+        </div>
+        <a href="{% url 'news_list' %}" class="back-button">Back to News List</a>
+    </div>
+</body>
+</html>
