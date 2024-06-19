@@ -5,3 +5,6 @@ class StudyCycles(models.Model):
 
     class Meta:
         db_table = 'StudyCycles'
+
+    def __str__(self):
+        return self.name

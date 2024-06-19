@@ -12,3 +12,6 @@ class Subjects(models.Model):
 
     class Meta:
         db_table = 'Subjects'
+
+    def __str__(self):
+        return self.name

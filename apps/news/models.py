@@ -8,3 +8,6 @@ class News(models.Model):
 
     class Meta:
         db_table = 'News'
+
+    def __str__(self):
+        return f'{self.headline}: {self.publication_date}'

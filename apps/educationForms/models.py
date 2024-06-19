@@ -5,3 +5,6 @@ class EducationForms(models.Model):
 
     class Meta:
         db_table = 'EducationForms'
+
+    def __str__(self):
+        return self.name
