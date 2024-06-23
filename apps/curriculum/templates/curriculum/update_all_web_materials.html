@@ -1,0 +1,23 @@
+<!-- curriculum/update_all_web_materials.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Обновить Все Веб-Материалы</title>
+    <link rel="stylesheet" href="{% static 'curriculum/update.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Обновить Все Веб-Материалы</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form.as_p }}
+            {% endfor %}
+            <button type="submit">Сохранить</button>
+        </form>
+        <a href="{% url 'view_subjects' %}" class="back-button">Обратно</a>
+    </div>
+</body>
+</html>

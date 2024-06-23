@@ -1,21 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
+{#additional_materials_list.html#}
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Additional Materials</title>
-</head>
-<body>
-    <h2>Additional Materials</h2>
-    <ul>
-        {% for material in materials %}
-            <li>
-                <a href="{% url 'additional_materials_detail' material.pk %}">{{ material.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'additional_materials_create' %}">Add New Material</a>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-</body>
-</html>
+    <link rel="stylesheet" href="{% static 'additionalMaterials/css/style.css' %}">
+{% endblock %}
+
+{% block bodycontent %}
+    {% include 'home/navbar.html' %}
+    <div class="container">
+        <h2>Additional Materials</h2>
+        <ul class="material-list">
+            {% for material in materials %}
+                <li>
+                    <a href="{% url 'additional_materials_detail' material.pk %}">{{ material.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if user.is_authenticated %}
+            <a href="{% url 'additional_materials_create' %}" class="btn">Add New Material</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+

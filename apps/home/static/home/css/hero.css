@@ -1,0 +1,66 @@
+.hero {
+  margin-top: 100px;
+}
+.hero__title {
+  font-family: Inter;
+  font-size: 48px;
+  text-align: center;
+  color: #212b31;
+  font-weight: 400;
+  max-width: 818px;
+  margin: 0 auto;
+}
+.hero__btn-black {
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  border: 3px solid #212b31;
+  background: #212b31;
+  padding: 9px 20px;
+  transition: 0.5s;
+  border-radius: 4px;
+}
+.hero__btn-black:hover {
+  color: #212b31;
+  background: #ffffff;
+}
+.hero__btn-white {
+  cursor: pointer;
+  color: #212b31;
+  font-family: Arial;
+  font-size: 15px;
+  border: 1px solid #dadedf;
+  background: #ffffff;
+  padding: 9px 20px;
+  transition: 0.5s;
+  border-radius: 4px;
+}
+.hero__btn-white:hover {
+  color: #ffffff;
+  background: #212b31;
+}
+.hero img {
+  align-items: center;
+}
+.hero__btns {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 30px;
+}
+.hero__imgs {
+  text-align: center;
+  margin-top: 88px;
+}
+.hero__cars {
+  margin-top: 30px;
+}
+.hero__imgs img {
+  max-width: 100%;
+}
+@media screen and (max-width: 706px) {
+  .hero__title {
+    font-size: 38px;
+  }
+}

@@ -1,0 +1,20 @@
+<!-- curriculum/update_subject.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Обновить Предмет</title>
+    <link rel="stylesheet" href="{% static 'curriculum/update.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Обновить Предмет</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Сохранить</button>
+        </form>
+        <a href="{% url 'view_subjects' %}" class="back-button">Обратно</a>
+    </div>
+</body>
+</html>

@@ -6,9 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-
 User = get_user_model()
-
 
 @csrf_exempt
 def login_view(request):

@@ -20,13 +20,11 @@ def additional_materials_create(request):
     return render(request, 'additionalMaterials/additional_materials_form.html', {'form': form})
 
 
-@login_required
 def additional_materials_list(request):
     materials = AdditionalMaterials.objects.all()
     return render(request, 'additionalMaterials/additional_materials_list.html', {'materials': materials})
 
 
-@login_required
 def additional_materials_detail(request, pk):
     material = get_object_or_404(AdditionalMaterials, pk=pk)
     return render(request, 'additionalMaterials/additional_materials_detail.html', {'material': material})

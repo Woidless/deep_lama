@@ -1,0 +1,48 @@
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Сариев Бактыбек Имангазиевич</title>
+    <link rel="stylesheet" href="{% static 'teachers/css/teacher_style.css' %}"/>
+{% endblock %}
+
+{% block bodycontent %}
+    <div class="professor-detail">
+        <div class="professor-image">
+            <img src="{% static 'teachers/img/sbi.jpg' %}" alt="Сариев Бактыбек Имангазиевич"/>
+        </div>
+        <div class="professor-info">
+            <h1>Сариев Бактыбек Имангазиевич</h1>
+            <h2>Кандидат технических наук, доцент</h2>
+            <h3>Образование:</h3>
+            <p>
+                Кыргызский государственный технический университет им. И.Раззакова,
+                (г. Бишкек) С 2002 года по 2008 год
+            </p>
+            <h3>Трудовая деятельность:</h3>
+            <ul>
+                <li>
+                    Институт энергетики и связи при КГТУ им. И.Раззакова, г. Бишкек
+                    Лаборант
+                </li>
+                <li>
+                    Кыргызский государственный технический университет им. И.Раззакова,
+                    (г. Бишкек) Преподаватель
+                </li>
+                <li>
+                    Кыргызский государственный технический университет им. И.Раззакова,
+                    (г. Бишкек) С 2008 года по 2014 год Старший преподаватель
+                </li>
+                <li>2019-года заведующий кафедрой «Электроснабжение»</li>
+            </ul>
+
+            <p>
+                <strong>E-mail:</strong>
+                <a href="sariev@kstu.kg">sariev@kstu.kg</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

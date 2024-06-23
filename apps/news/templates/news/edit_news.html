@@ -1,21 +1,65 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit News</title>
-    <link rel="stylesheet" href="{% static 'news/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'news/edit-style.css' %}">
+    <style>
+        .clear-checkbox {
+            display: none;
+        }
+    </style>
+    <script>
+        function clearImage() {
+            var imageInput = document.getElementById('id_image');
+            if (imageInput) {
+                imageInput.value = '';
+            }
+            var currentImageText = document.getElementById('current-image');
+            if (currentImageText) {
+                currentImageText.innerHTML = 'На данный момент: Изображение очищено';
+            }
+            var clearCheckbox = document.getElementById('id_image-clear_id');
+            if (clearCheckbox) {
+                clearCheckbox.checked = true;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>Edit News</h1>
+        <h1>Редактирование Новости</h1>
         <form method="post" enctype="multipart/form-data" class="custom-form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Save</button>
+            <div>
+                {{ form.headline.label_tag }} {{ form.headline }}
+            </div>
+            <div>
+                {{ form.content.label_tag }} {{ form.content }}
+            </div>
+            <div>
+                {{ form.publication_date.label_tag }} {{ form.publication_date }}
+            </div>
+            <div>
+                {{ form.image.label_tag }}
+                <div id="current-image">На данный момент:
+                    {% if form.instance.image %}
+                        <a href="{{ form.instance.image.url }}">{{ form.instance.image.name }}</a>
+                    {% else %}
+                        Изображение не загружено
+                    {% endif %}
+                </div>
+                <button type="button" onclick="clearImage()">Очистить фото</button>
+                <div class="clear-checkbox">
+                    {{ form.image.delete_checkbox }}
+                </div>
+            </div>
+            <button type="submit">Сохранить</button>
         </form>
-        <a href="{% url 'view_news_detail' news_item.id %}" class="back-button">Cancel</a>
+        <a href="{% url 'view_news_detail' news_item.id %}" class="back-button">Отмена</a>
     </div>
 </body>
 </html>

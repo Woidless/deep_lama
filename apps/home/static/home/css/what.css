@@ -1,0 +1,38 @@
+.what {
+  margin-top: 143px;
+}
+.what__title {
+  color: #212b31;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+}
+.what__text {
+  color: #72787d;
+  font-family: Inter;
+  font-size: 20px;
+  text-align: center;
+  max-width: 827px;
+  margin: 0 auto;
+}
+.what__content {
+  margin-top: 33px;
+}
+.what__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.what__item-title {
+  color: #212b31;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+}
+.what__item-text {
+  color: #72787d;
+  font-family: Inter;
+  font-size: 16px;
+  max-width: 500px;
+}

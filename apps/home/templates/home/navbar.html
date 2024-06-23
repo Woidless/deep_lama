@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}"/>
+<header class="header">
+    <div class="header__content">
+        <div class="header__logo">
+            <img src="{% static 'home/img/logo.jpg' %}" alt="logo"/>
+            Платформа ИСиТ
+        </div>
+        <nav class="header__nav">
+            <a href="/#">Главная</a>
+            <a href="/#a">О кафедре</a>
+            <a href="/#b">Состав кафедры</a>
+            <a href="/news">Новости</a>
+            <a href="/additional-materials">Учебные материалы</a>
+            <a href="/curriculum">Учебный план</a>
+            <a href="/#c">Контакты</a>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}" class="auth-form">
+                    {% csrf_token %}
+                    <button type="submit">Выйти</button>
+                </form>
+            {% else %}
+                <button onclick="window.location.href = '{% url 'login' %}';" class="auth-button">
+                    Авторизация
+                </button>
+            {% endif %}
+        </nav>
+    </div>
+</header>

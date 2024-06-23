@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="post">
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Форма авторизации</title>
+    <link rel="stylesheet" href="{% static 'account/css/style.css' %}"/>
+{% endblock %}
+
+{% block bodycontent %}
+<div class="login-container">
+    <form method="post" class="login-form">
+        <h2>Авторизация</h2>
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit">Войти</button>
     </form>
-</body>
-</html>
+</div>
+{% endblock %}

@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'apps.teachers',
     'apps.textbooks',
     'apps.webMaterials',
-    'apps.main',
     'apps.home',
+    'apps.curriculum',
     'apps.additionalMaterialType',
     'django_cleanup.apps.CleanupConfig',
 ]
@@ -62,7 +62,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'apps.main.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'

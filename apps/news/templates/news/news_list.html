@@ -1,24 +1,29 @@
+{% extends 'home/layout.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
+
+
+{% block headcontent %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новости</title>
-    <link rel="stylesheet" href="{% static 'news/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h1>Новости</h1>
-        <div id="news-cards" class="news-cards"></div>
-        <a href="{% url 'create_news' %}" class="create-button">Добавить новость</a>
-    </div>
+    <link rel="stylesheet" href="{% static 'news/news-style.css' %}">
+{% endblock %}
 
-    <script>
-        // Функция для загрузки новостей из Django шаблонов
-        function loadNews() {
-            const news_items = [
-                {% for news in news_items %}
+{% block bodycontent %}
+<body>
+{% include 'home/navbar.html' %}
+<h1>Новости</h1>
+<div class="container">
+    <div id="news-cards" class="news-cards"></div>
+{#    <a href="{% url 'create_news' %}" class="create-button">Добавить новость</a>#}
+</div>
+
+<script>
+    // Функция для загрузки новостей из Django шаблонов
+    function loadNews() {
+        const news_items = [
+            {% for news in news_items %}
                 {
                     id: "{{ news.id }}",
                     title: "{{ news.headline }}",
@@ -26,33 +31,32 @@
                     image: "{% if news.image %}{{ news.image.url }}{% endif %}",
                     publication_date: "{{ news.publication_date }}"
                 },
-                {% endfor %}
-            ];
-            return news_items;
-        }
+            {% endfor %}
+        ];
+        return news_items;
+    }
 
-        // Функция для отображения новостей в виде карточек
-        function displayNewsCards(news) {
-            const newsCardsContainer = document.getElementById('news-cards');
-            newsCardsContainer.innerHTML = '';
-            news.forEach((newsItem) => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    ${newsItem.image ? `<img src="${newsItem.image}" alt="${newsItem.title}" class="news-image">` : ''}
-                    <h2>${newsItem.title}</h2>
-                    <p>${newsItem.content}...</p>
-                    <a href="/news/${newsItem.id}/" class="read-more-button">Читать полностью</a>
-                `;
-                newsCardsContainer.appendChild(card);
-            });
-        }
-
-        // Функция для загрузки и отображения новостей при загрузке страницы
-        document.addEventListener('DOMContentLoaded', () => {
-            const news = loadNews();
-            displayNewsCards(news);
+    // Функция для отображения новостей в виде карточек
+    function displayNewsCards(news) {
+        const newsCardsContainer = document.getElementById('news-cards');
+        newsCardsContainer.innerHTML = '';
+        news.forEach((newsItem) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+            ${newsItem.image ? `<img src="${newsItem.image}" alt="${newsItem.title}" class="news-image">` : ''}
+            <h2>${newsItem.title}</h2>
+            <p>${newsItem.content}...</p>
+            <a href="/news/${newsItem.id}/" class="read-more-button">Читать полностью</a>
+        `;
+            newsCardsContainer.appendChild(card);
         });
-    </script>
-</body>
-</html>
+    }
+
+    // Функция для загрузки и отображения новостей при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+        const news = loadNews();
+        displayNewsCards(news);
+    });
+</script>
+{% endblock %}

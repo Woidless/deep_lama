@@ -1,0 +1,38 @@
+<!-- curriculum/update_all_textbooks.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Обновить Все Учебники</title>
+    <link rel="stylesheet" href="{% static 'curriculum/update.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Обновить Все Учебники</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Количество</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in formset %}
+                        <tr>
+                            <td>{{ form.instance.name }}</td>
+                            <td>{{ form.instance.quantity }}</td>
+                            <td><input type="checkbox" name="delete_textbook" value="{{ form.instance.id }}"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit">Сохранить</button>
+        </form>
+        <a href="{% url 'view_subjects' %}" class="back-button">Обратно</a>
+    </div>
+</body>
+</html>

@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
+{#additional_materials_list.html#}
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirm Delete</title>
-</head>
-<body>
-    <h2>Are you sure you want to delete "{{ material.name }}"?</h2>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Yes, delete</button>
-    </form>
-    <a href="{% url 'additional_materials_detail' material.pk %}">No, go back</a>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-</body>
-</html>
+    <link rel="stylesheet" href="{% static 'additionalMaterials/css/style.css' %}">
+{% endblock %}
+
+{% block bodycontent %}
+    <div class="container">
+        <h2>Are you sure you want to delete "{{ material.name }}"?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Yes, delete</button>
+        </form>
+        <a href="{% url 'additional_materials_detail' material.pk %}" class="btn">No, go back</a>
+    </div>
+{% endblock %}
+

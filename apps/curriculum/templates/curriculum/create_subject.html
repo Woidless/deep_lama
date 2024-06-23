@@ -1,0 +1,24 @@
+<!-- curriculum/templates/curriculum/create_subject.html -->
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать предмет</title>
+    <link rel="stylesheet" href="{% static 'curriculum/subjects.css' %}">
+{% endblock %}
+
+{% block bodycontent %}
+    {% include 'home/navbar.html' %}
+    <div class="container">
+        <h2>Создать новый предмет</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Создать</button>
+        </form>
+        <a href="{% url 'view_subjects' %}" class="btn">Назад</a>
+    </div>
+{% endblock %}

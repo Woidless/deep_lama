@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create/Update Additional Material</title>
-</head>
-<body>
-    <h2>{{ form.instance.pk|yesno:"Update,Create" }} Additional Material</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{{ form.instance.pk|yesno:"Update,Create" }}</button>
-    </form>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-</body>
-</html>
+{#additional_materials_list.html#}
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ form.instance.pk|yesno:"Update,Create" }} Additional Material</title>
+    <link rel="stylesheet" href="{% static 'additionalMaterials/css/style.css' %}">
+{% endblock %}
+
+{% block bodycontent %}
+    <div class="container">
+        <h2>{{ form.instance.pk|yesno:"Update,Create" }} Additional Material</h2>
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">{{ form.instance.pk|yesno:"Update,Create" }}</button>
+        </form>
+    </div>
+{% endblock %}
+

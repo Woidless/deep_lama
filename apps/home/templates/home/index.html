@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Платформа ИСиТ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'home/css/index.css' %}"/>
+</head>
+<body>
+
+{% include 'home/navbar.html' %}
+
+<section class="hero">
+    <div class="container">
+        <div class="hero__container">
+            <h1 class="hero__title">
+                Информационные системы и технологии имени академика А.Жайнакова
+            </h1>
+            <div class="hero__imgs">
+                <img class="hero__city" src="{% static "home/img/istt.jpeg" %}" alt="img"/>
+            </div>
+        </div>
+    </div>
+</section>
+<p><a name="a"></a></p>
+<section class="controle">
+    <div class="container">
+        <div class="controle__maintext">
+            Информационные системы и технологии им.акад.А.Жайнакова
+        </div>
+        <div class="controle__content">
+            <div class="controle__item">
+                <h2 class="controle__title">
+                    Мы выпускаем высококвалифицированных специалистов
+                </h2>
+                <p class="controle__text">
+                    На кафедре «Информационные системы и технологии им.академика
+                    А.Жайнакова» студенты получают знания и навыки в области
+                    разработки и внедрения информационных систем, а также в области
+                    инфокоммуникационных технологии и системы связи. В процессе
+                    обучения студенты изучают IT программирование, базы данных,
+                    сетевые технологии, анализ данных, проектирование систем и другие
+                    смежные дисциплины. В результате обучения выпускники готовы к
+                    работе в различных сферах, связанных с информационными
+                    технологиями, таких как разработка ПО, системный анализ,
+                    управление проектами, тестирование программного обеспечения и
+                    другие.
+                </p>
+            </div>
+            <div class="controle__item">
+                <div class="delyvery__img">
+                    <img src="{% static "home/img/index_image.JPG" %}" alt="img"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="what">
+    <div class="container">
+        <h2 class="what__title">Миссия кафедры</h2>
+        <p class="what__text">
+            Подготовка высококвалифицированных специалистов по IT-направлениям,
+            отвечающих требованиям потребителей, на основе внедрения современных
+            образовательных технологий и постоянного совершенствования
+            учебно-методической деятельности профессорско-преподавательского
+            состава кафедры.
+        </p>
+        <div class="what__content">
+            <div class="what__item">
+                <div>
+                    <p class="what__item-text">
+                        Подготовка квалифицированных специалистов, обладающих
+                        общекультурными и профессиональными компетенциями в области
+                        информационных систем и телекоммуникационных технологий
+                    </p>
+                </div>
+                <div><img src="./img/what-1.png" alt=""/></div>
+            </div>
+            <div class="what__item">
+                <div><img src="./img/what-2.png" alt=""/></div>
+                <div>
+                    <p class="what__item-text">
+                        Увеличение интеллектуального потенциала кафедры, развитие
+                        научно-исследовательской базы кафедры, повышение
+                        профессионализма профессорско-преподавательского состава,
+                        отвечающей современным требованиям подготовки квалифицированных
+                        конкурентоспособных кадров
+                    </p>
+                </div>
+            </div>
+            <div class="what__item">
+                <div>
+                    <p class="what__item-text">
+                        Внедрение инновационных методов организации учебного процесса,
+                        применение прогрессивных образовательных технологий
+                    </p>
+                </div>
+                <div><img src="./img/what-3.png" alt=""/></div>
+            </div>
+        </div>
+    </div>
+</section>
+<p><a name="b"></a></p>
+<section class="deliver">
+    <div class="container">
+        <h2 class="deliver__title">Состав кафедры</h2>
+        <p class="deliver__text">
+            На кафедре "Информационные системы и технологии им.акад.А.Жайнакова"
+            преподают одни высококвалифицированные преподователи
+        </p>
+        <div class="deliver__content">
+            <a class="deliver__item" href="teachers/ana">
+                <div>
+                    <img src="{% static 'teachers/img/ana.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Аманкулова Нургул Асимкановна</h3>
+                    <p class="deliver__item-text">
+                        Заведующая кафедрой, к.ф.-м.н. доцент
+                    </p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/dkd">
+                <div>
+                    <img src="{% static 'teachers/img/dkd.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Дуйшоков Кайратбек Дуйшокович</h3>
+                    <p class="deliver__item-text">К.ф.-м.н. доцент</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/kgk">
+                <div>
+                    <img src="{% static 'teachers/img/kgk.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">
+                        Керимкулова Гулсаат Кубатбековна
+                    </h3>
+                    <p class="deliver__item-text">К.ф.-м.н. доцент</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/ktj">
+                <div>
+                    <img src="{% static 'teachers/img/ktj.jpeg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Касымова Тумар Джапашевна</h3>
+                    <p class="deliver__item-text">К.ф.-м.н. доцент</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/dk">
+                <div>
+                    <img src="{% static 'teachers/img/dk.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Джакыпбеков Каныбек</h3>
+                    <p class="deliver__item-text">К.ф.-м.н. доцент</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/sbi">
+                <div>
+                    <img src="{% static 'teachers/img/sbi.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Сариев Бактыбек Имангазиевич</h3>
+                    <p class="deliver__item-text">К.т.н. доцент</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/szs">
+                <div>
+                    <img src="{% static 'teachers/img/szs.jpeg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">
+                        Сазбаков Замирбек Садыгалиевич
+                    </h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/kgt">
+                <div>
+                    <img src="{% static 'teachers/img/kgt.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">
+                        Каримова Гульмира Токтомуратовна
+                    </h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/uksh">
+                <div>
+                    <img src="{% static 'teachers/img/uksh.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Урманбетова Кундуз Шопоковна</h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/tzs">
+                <div>
+                    <img src="{% static 'teachers/img/tzs.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">
+                        Турсункулова Захира Сарымсаковна
+                    </h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/bjz">
+                <div>
+                    <img src="{% static 'teachers/img/bzj.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Бакиева Жыргалкул Зарлыковна</h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/kjk">
+                <div>
+                    <img src="{% static 'teachers/img/kjk.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">
+                        Койчуманова Жамила Койчумановна
+                    </h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/ata">
+                <div>
+                    <img src="{% static 'teachers/img/ata.png' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Апилова Тинатин Азанкуловна</h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/tjd">
+                <div>
+                    <img src="{% static 'teachers/img/tjd.jpeg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Тойбаева Жазгул Джумадиловна</h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/kna">
+                <div>
+                    <img src="{% static 'teachers/img/kna.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Кукеева Назира Асанкуловна</h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/aash">
+                <div>
+                    <img src="{% static 'teachers/img/aash.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Атамбекова Айсулуу Шайбековна</h3>
+                    <p class="deliver__item-text">Старший преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/aab">
+                <div>
+                    <img src="{% static 'teachers/img/aab.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">
+                        Аязбеков Алмазбек Бактыбекович
+                    </h3>
+                    <p class="deliver__item-text">Преподователь</p>
+                </div>
+            </a>
+            <a class="deliver__item" href="teachers/szr">
+                <div>
+                    <img src="{% static 'teachers/img/szr.jpg' %}" alt=""/>
+                </div>
+                <div>
+                    <h3 class="deliver__item-title">Солпиева Залина Рысбековна</h3>
+                    <p class="deliver__item-text">Преподователь</p>
+                </div>
+            </a>
+        </div>
+
+</section>
+<p><a name="c"></a></p>
+<section class="contacts">
+    <div class="container">
+        <h2 class="contacts__title">КОНТАКТЫ</h2>
+        <div class="contacts__content">
+            <div class="contacts-item">
+                <h3 class="contacts-item__title">Адресс</h3>
+                <p class="contacts-item__text">Чуй проспект 56</p>
+            </div>
+            <div class="contacts-item">
+                <h3 class="contacts-item__title">Телефон</h3>
+                <p class="contacts-item__text">+996778055559</p>
+                <p class="contacts-item__text">+996554402747</p>
+            </div>
+            <div class="contacts-item">
+                <h3 class="contacts-item__title">Время работы</h3>
+                <p class="contacts-item__text">ПН-СБ</p>
+                <p class="contacts-item__text">08:00 - 21:00</p>
+            </div>
+            <div class="contacts-item">
+                <h3 class="contacts-item__title">Соц сети</h3>
+                <p class="contacts-item__text">
+                    <a href="https://www.instagram.com" class="item-footer__link"
+                    >Instagram</a
+                    >
+                </p>
+                <p class="contacts-item__text">
+                    <a href="https://www.facebook.com" class="item-footer__link"
+                    >FaceBook</a
+                    >
+                </p>
+                <p class="contacts-item__text">
+                    <a href="https://www.tiktok.com/" class="item-footer__link"
+                    >Tik-Tok</a
+                    >
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="./js/script.js"></script>
+</body>
+</html>

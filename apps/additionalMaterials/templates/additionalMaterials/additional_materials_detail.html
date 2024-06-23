@@ -1,23 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
+{#additional_materials_list.html#}
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ material.name }}</title>
-</head>
-<body>
-    <h2>{{ material.name }}</h2>
-    <p>Material Type: {{ material.material_type }}</p>
-    <p>File Link: {{ material.file_link }}</p>
-    <p>Subject: {{ material.subject }}</p>
-    <p>Added by: {{ material.added_by }}</p>
-    <a href="{% url 'additional_materials_update' material.pk %}">Edit</a>
-    <form method="post" action="{% url 'additional_materials_delete' material.pk %}">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
-    <a href="{% url 'additional_materials_list' %}">Back to list</a>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-</body>
-</html>
+    <link rel="stylesheet" href="{% static 'additionalMaterials/css/style.css' %}">
+{% endblock %}
+
+{% block bodycontent %}
+    <div class="container">
+        <h2>{{ material.name }}</h2>
+        <p><strong>Material Type:</strong> {{ material.material_type }}</p>
+        <p><strong>File Link:</strong> {{ material.file_link }}</p>
+        <p><strong>Subject:</strong> {{ material.subject }}</p>
+        <p><strong>Added by:</strong> {{ material.added_by }}</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'additional_materials_update' material.pk %}" class="btn">Edit</a>
+            <form method="post" action="{% url 'additional_materials_delete' material.pk %}" class="inline-form">
+            {% csrf_token %}
+            <button type="submit" class="btn">Delete</button>
+        </form>
+        {% endif %}
+        <a href="{% url 'additional_materials_list' %}" class="btn">Back to list</a>
+    </div>
+{% endblock %}
+
