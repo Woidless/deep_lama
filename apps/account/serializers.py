@@ -1,4 +1,4 @@
-# serializers.py
+# account/serializers.py
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -12,11 +12,8 @@ class LoginSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-
-        # Добавляем пользовательскую информацию в токен
         token['email'] = user.email
         token['username'] = user.username
-
         return token
 
 class LogoutSerializer(serializers.Serializer):

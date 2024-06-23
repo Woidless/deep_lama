@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'apps.webMaterials',
     'apps.main',
     'apps.home',
+    'apps.additionalMaterialType',
     'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'apps.main.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -202,9 +204,24 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+        }
+    }
+}
+
 
 CELERY_BROKER_URL = 'redis://127.0.0.1'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/account/login/'
 
 
 CORS_ORIGIN_ALLOW_ALL = True

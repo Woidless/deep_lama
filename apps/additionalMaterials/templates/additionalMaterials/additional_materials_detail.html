@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ material.name }}</title>
+</head>
+<body>
+    <h2>{{ material.name }}</h2>
+    <p>Material Type: {{ material.material_type }}</p>
+    <p>File Link: {{ material.file_link }}</p>
+    <p>Subject: {{ material.subject }}</p>
+    <p>Added by: {{ material.added_by }}</p>
+    <a href="{% url 'additional_materials_update' material.pk %}">Edit</a>
+    <form method="post" action="{% url 'additional_materials_delete' material.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'additional_materials_list' %}">Back to list</a>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

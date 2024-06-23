@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Additional Materials</title>
+</head>
+<body>
+    <h2>Additional Materials</h2>
+    <ul>
+        {% for material in materials %}
+            <li>
+                <a href="{% url 'additional_materials_detail' material.pk %}">{{ material.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'additional_materials_create' %}">Add New Material</a>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

@@ -1,33 +1,30 @@
-# views.py
-from rest_framework import permissions
-from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView
-from rest_framework_simplejwt.views import TokenObtainPairView
+# account/views.py
 from django.contrib.auth import get_user_model
-from . import serializers
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+
 
 User = get_user_model()
 
 
-class LoginView(TokenObtainPairView):
-    serializer_class = serializers.LoginSerializer
-    permission_classes = (permissions.AllowAny,)
+@csrf_exempt
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home_page')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'account/login.html', {'form': form})
 
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-        except Exception as e:
-            return Response({'error': str(e)}, status=400)
-        return Response(serializer.validated_data, status=200)
-
-
-class LogoutView(GenericAPIView):
-    serializer_class = serializers.LogoutSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response('Successfully logged out!', status=204)
+@login_required
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('home_page')
+    return render(request, 'account/logout.html')

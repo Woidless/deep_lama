@@ -41,8 +41,17 @@
                 <tr>
                     <td><a href="/news" class="btn btn-primary btn-block">News</a></td>
                 </tr>
+                <tr>
+                    <td><a href="/additional-materials" class="btn btn-primary btn-block">Additional Materials</a></td>
+                </tr>
             </tbody>
         </table>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        {% endif %}
     </div>
 </body>
 </html>

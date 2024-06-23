@@ -5,4 +5,4 @@ from .models import AdditionalMaterials
 class AdditionalMaterialsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdditionalMaterials
-        fields = ['name', 'type', 'file_link', 'subject']
+        fields = ['name', 'material_type', 'file_link', 'subject']

@@ -1,5 +1,12 @@
 # main/views.py
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+
+from rest_framework import generics, permissions
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
 from ..studyCycles.models import StudyCycles
 from ..textbooks.models import Textbooks
 from ..subjects.models import Subjects
@@ -8,6 +15,8 @@ from .forms import SubjectForm
 from ..textbooks.forms import TextbookFormSet
 from ..webMaterials.forms import WebMaterialFormSet
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def view_subjects(request):
     study_cycles = StudyCycles.objects.all()
     data = []
@@ -30,8 +39,9 @@ def view_subjects(request):
             'study_cycle': study_cycle.name,
             'subjects': subjects_data,
         })
-    return render(request, 'main/subjects.html', {'data': data})
+    return Response(data)
 
+@login_required
 def update_subject(request, subject_id):
     subject = get_object_or_404(Subjects, id=subject_id)
     if request.method == 'POST':
@@ -43,6 +53,7 @@ def update_subject(request, subject_id):
         form = SubjectForm(instance=subject)
     return render(request, 'main/update_subject.html', {'form': form})
 
+@login_required
 def update_all_textbooks(request, subject_id):
     subject = get_object_or_404(Subjects, id=subject_id)
     if request.method == 'POST':
@@ -54,6 +65,7 @@ def update_all_textbooks(request, subject_id):
         formset = TextbookFormSet(queryset=Textbooks.objects.filter(subject=subject))
     return render(request, 'main/update_all_textbooks.html', {'formset': formset})
 
+@login_required
 def update_all_web_materials(request, subject_id):
     subject = get_object_or_404(Subjects, id=subject_id)
     if request.method == 'POST':
