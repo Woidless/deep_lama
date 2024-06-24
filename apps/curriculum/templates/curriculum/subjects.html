@@ -12,7 +12,13 @@
 
 {% block bodycontent %}
     {% include 'home/navbar.html' %}
-    <a href="{% url 'create_subject' %}" class="btn">Добавить новый предмет</a>
+    <div class="btn-group">
+        <a href="{% url 'create_subject' %}" class="update-button" style="display:block; width:200px">Добавить новый предмет</a>
+        <a href="{% url 'create_textbook' %}" class="update-button" style="display:block; width:200px">Добавить книгу</a>
+        <a href="{% url 'create_web_material' %}" class="update-button" style="display:block; width:200px">Добавить веб-материал</a>
+        <a href="{% url 'delete_textbook' %}" class="update-button" style="display:block; width:200px; background: #E83636">Удалить книгу</a>
+        <a href="{% url 'delete_web_material' %}" class="update-button" style="display:block; width:200px; background: #E83636">Удалить веб-материал</a>
+    </div>
     {% for item in data %}
         <h2>{{ item.study_cycle }}</h2>
         <table class="styled-table">
@@ -47,7 +53,9 @@
                                 <td>{{ textbook.quantity }}</td>
                                 <td rowspan="{{ subject.textbooks|length }}">
                                     {% for web_material in subject.web_materials %}
-                                        {{ web_material }}{% if not forloop.last %}<br>{% endif %}
+
+                                        <a href="{{ web_material }}">{{ web_material }}</a>
+                                        {% if not forloop.last %}<br>{% endif %}
                                     {% endfor %}
                                 </td>
                                 <td rowspan="{{ subject.textbooks|length }}">
@@ -57,8 +65,7 @@
                                     <br>
                                     <a href="{% url 'update_all_web_materials' subject.subject_id %}" class="update-all-button">Обновить веб-материалы</a>
                                     <br>
-                                    <a href="{% url 'delete_textbooks' subject.subject_id %}" class="delete-button">Удалить учебники</a>
-                                    <br>
+                                    <a href="{% url 'subject_delete' subject.subject_id %}" class="update-button" style="background: #E83636">Удалить предмет</a>
                                 </td>
                             </tr>
                         {% else %}

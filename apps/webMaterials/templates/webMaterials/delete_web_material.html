@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Web Material</title>
+</head>
+<body>
+    <h2>Delete a web material</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ subject_form.as_p }}
+        {% if web_material_form %}
+            {{ web_material_form.as_p }}
+        {% endif %}
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

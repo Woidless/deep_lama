@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Textbook</title>
+</head>
+<body>
+    <h2>Delete a textbook</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ subject_form.as_p }}
+        {% if textbook_form %}
+            {{ textbook_form.as_p }}
+        {% endif %}
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

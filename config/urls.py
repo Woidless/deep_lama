@@ -32,6 +32,9 @@ urlpatterns = [
     path('news/', include('apps.news.urls')),
     path('additional-materials/', include('apps.additionalMaterials.urls')),
     path('curriculum/', include('apps.curriculum.urls')),
+    path('textbooks/', include('apps.textbooks.urls')),
+    path('web-materials/', include('apps.webMaterials.urls')),
+    path('subjects/', include('apps.subjects.urls')),
 ]
 
 if settings.DEBUG:

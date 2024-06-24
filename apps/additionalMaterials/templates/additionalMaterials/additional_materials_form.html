@@ -1,4 +1,4 @@
-{#additional_materials_list.html#}
+{# additionalMaterials/additional_materials_form.html #}
 {% extends 'home/layout.html' %}
 
 {% load static %}
@@ -13,11 +13,10 @@
 {% block bodycontent %}
     <div class="container">
         <h2>{{ form.instance.pk|yesno:"Update,Create" }} Additional Material</h2>
-        <form method="post" class="form">
+        <form method="post" class="form" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn">{{ form.instance.pk|yesno:"Update,Create" }}</button>
         </form>
     </div>
 {% endblock %}
-

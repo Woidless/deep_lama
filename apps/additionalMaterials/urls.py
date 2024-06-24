@@ -1,5 +1,7 @@
 # additionalMaterials/urls.py
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import (
     additional_materials_create,
     additional_materials_list,
@@ -14,5 +16,5 @@ urlpatterns = [
     path('<int:pk>/', additional_materials_detail, name='additional_materials_detail'),
     path('<int:pk>/update/', additional_materials_update, name='additional_materials_update'),
     path('<int:pk>/delete/', additional_materials_delete, name='additional_materials_delete'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

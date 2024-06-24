@@ -1,0 +1,23 @@
+{# subjects/subject_confirm_delete.html #}
+{% extends 'home/layout.html' %}
+
+{% load static %}
+
+{% block headcontent %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+    <link rel="stylesheet" href="{% static 'subjects/css/style.css' %}">
+{% endblock %}
+
+{% block bodycontent %}
+    <div class="container">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete the subject "{{ subject.name }}"? This will also delete all associated textbooks and web materials.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'view_subjects' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

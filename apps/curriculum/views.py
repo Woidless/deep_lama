@@ -2,16 +2,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+
 from ..studyCycles.models import StudyCycles
 from ..textbooks.models import Textbooks
 from ..subjects.models import Subjects
 from ..webMaterials.models import WebMaterials
-from .forms import SubjectForm, TextbookForm
 
-from ..textbooks.forms import TextbookFormSet
-from ..webMaterials.forms import WebMaterialFormSet
+from .forms import SubjectForm, TextbookFormSet, WebMaterialFormSet
 
-from django.forms import modelformset_factory
+
 
 @login_required
 def view_subjects(request):
@@ -38,6 +37,7 @@ def view_subjects(request):
         })
     return render(request, 'curriculum/subjects.html', {'data': data})
 
+
 @login_required
 def update_subject(request, subject_id):
     subject = get_object_or_404(Subjects, id=subject_id)
@@ -50,6 +50,7 @@ def update_subject(request, subject_id):
         form = SubjectForm(instance=subject)
     return render(request, 'curriculum/update_subject.html', {'form': form})
 
+
 @login_required
 def update_all_textbooks(request, subject_id):
     subject = get_object_or_404(Subjects, id=subject_id)
@@ -61,6 +62,7 @@ def update_all_textbooks(request, subject_id):
     else:
         formset = TextbookFormSet(queryset=Textbooks.objects.filter(subject=subject))
     return render(request, 'curriculum/update_all_textbooks.html', {'formset': formset})
+
 
 @login_required
 def update_all_web_materials(request, subject_id):
@@ -86,34 +88,3 @@ def create_subject(request):
         form = SubjectForm()
     return render(request, 'curriculum/create_subject.html', {'form': form})
 
-
-@login_required
-def delete_textbook(request, textbook_id):
-    textbook = get_object_or_404(Textbooks, id=textbook_id)
-    subject_id = textbook.subject.id  # Get subject ID before deletion
-    if request.method == 'POST':
-        textbook.delete()
-        # Redirect to the subject detail page or any other desired page
-        return redirect('view_subjects')
-    else:
-        # Optionally, handle GET request for confirmation before deletion
-        return render(request, 'curriculum/confirm_delete_textbook.html', {'textbook': textbook})
-
-
-@login_required
-def delete_textbooks(request, subject_id):
-    subject = get_object_or_404(Subjects, id=subject_id)
-    TextbookFormSet = modelformset_factory(Textbooks, form=TextbookForm, extra=0)
-
-    if request.method == 'POST':
-        formset = TextbookFormSet(request.POST, queryset=Textbooks.objects.filter(subject=subject))
-        if formset.is_valid():
-            for form in formset:
-                if form.cleaned_data.get('delete_textbook'):
-                    textbook_id = form.instance.id
-                    Textbooks.objects.filter(id=textbook_id).delete()
-            return redirect('view_subjects')
-    else:
-        formset = TextbookFormSet(queryset=Textbooks.objects.filter(subject=subject))
-
-    return render(request, 'curriculum/delete_textbooks.html', {'formset': formset})

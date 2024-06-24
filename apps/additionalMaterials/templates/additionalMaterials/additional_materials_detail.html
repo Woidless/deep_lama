@@ -1,4 +1,4 @@
-{#additional_materials_list.html#}
+{# additionalMaterials/additional_materials_detail.html #}
 {% extends 'home/layout.html' %}
 
 {% load static %}
@@ -14,9 +14,13 @@
     <div class="container">
         <h2>{{ material.name }}</h2>
         <p><strong>Material Type:</strong> {{ material.material_type }}</p>
-        <p><strong>File Link:</strong> {{ material.file_link }}</p>
         <p><strong>Subject:</strong> {{ material.subject }}</p>
         <p><strong>Added by:</strong> {{ material.added_by }}</p>
+        {% if material.file %}
+            <p><strong>File:</strong> <a href="{{ material.file.url }}" target="_blank">Download File</a></p>
+        {% else %}
+            <p><strong>File:</strong> No file available</p>
+        {% endif %}
         {% if user.is_authenticated %}
             <a href="{% url 'additional_materials_update' material.pk %}" class="btn">Edit</a>
             <form method="post" action="{% url 'additional_materials_delete' material.pk %}" class="inline-form">
@@ -27,4 +31,3 @@
         <a href="{% url 'additional_materials_list' %}" class="btn">Back to list</a>
     </div>
 {% endblock %}
-

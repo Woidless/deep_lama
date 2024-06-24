@@ -48,6 +48,9 @@ class CustomUser(AbstractUser):
                                         'Unselect this instead of deleting accounts.'
                                     ))
 
+    def get_full_name(self):
+        return f'{self.surname} {self.name} {self.patronymic}'
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'

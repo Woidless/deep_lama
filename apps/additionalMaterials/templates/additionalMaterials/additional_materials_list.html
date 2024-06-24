@@ -1,4 +1,4 @@
-{#additional_materials_list.html#}
+{# additionalMaterials/additional_materials_list.html #}
 {% extends 'home/layout.html' %}
 
 {% load static %}
@@ -14,18 +14,18 @@
     {% include 'home/navbar.html' %}
     <div class="container">
         <h2>Additional Materials</h2>
-        <ul class="material-list">
+        <ul>
             {% for material in materials %}
                 <li>
                     <a href="{% url 'additional_materials_detail' material.pk %}">{{ material.name }}</a>
+                    {% if material.file %}
+                        <a href="{{ material.file.url }}" target="_blank">Download File</a>
+                    {% else %}
+                        No file available
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
-        {% if user.is_authenticated %}
-            <a href="{% url 'additional_materials_create' %}" class="btn">Add New Material</a>
-        {% endif %}
+        <a href="{% url 'additional_materials_create' %}" class="btn">Add New Material</a>
     </div>
 {% endblock %}
-
-
-
